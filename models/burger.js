@@ -1,5 +1,3 @@
-const express = require("express");
-const router = express.Router();
 const orm = require("../config/orm");
 
 router.get("/", function(req, res) {
@@ -9,8 +7,9 @@ orm.selectAll(function(data){
     };
     console.log(hbsObject);
     res.render("index", hbsObject)
-})
-})
+}),
+
+});
 
 
 

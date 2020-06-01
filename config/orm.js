@@ -1,8 +1,28 @@
 const connection = require("./connection");
 
+function objToSql(ob) {
+    var arr = [];
+
+    for (var key in ob) {
+      var value = ob[key];
+ 
+      if (Object.hasOwnProperty.call(ob, key)) {
+
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+
+        arr.push(key + "=" + value);
+      }
+    }
+  
+ 
+    return arr.toString();
+  }
+
 let orm = {
     selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        let queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
@@ -10,15 +30,17 @@ let orm = {
             cb(result);
         });
     },
-    insertAll: function(table, cols, vals, cb) {
-        let queryString = "INSERT INTO" + table;
 
-        queryString += " VALUES";
+    create: function(table, cols, vals, cb) {
+        var queryString = "INSERT INTO " + table;
+        queryString += " (";
         queryString += cols.toString();
         queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
     
-    
-        console.log("insert:" + queryString);
+        console.log(queryString);
     
         connection.query(queryString, vals, function(err, result) {
           if (err) {
@@ -27,24 +49,28 @@ let orm = {
     
           cb(result);
         });
-    },
-    // updateOne: function (table, condition, cb) {
-    //     var queryString = "UPDATE " + table;
-
-    //     queryString += " SET ";
-    //     queryString += objToSql(objColVals);
-    //     queryString += " WHERE ";
-    //     queryString += condition;
+      },
+   
+    create: function(table, cols, vals, cb) {
+        var queryString = "INSERT INTO " + table;
     
-    //     console.log("update:" + queryString);
-    //     connection.query(queryString, function(err, result) {
-    //       if (err) {
-    //         throw err;
-    //       }
+      
+        queryString += cols.toString();
+       
+        queryString += "VALUES (";
     
-    //       cb(result);
-    //     });
-    //   }
+   
+    
+        console.log(queryString);
+    
+        connection.query(queryString, vals, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      },
 }
 
 module.exports = orm;

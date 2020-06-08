@@ -1,26 +1,26 @@
 <h1>Eat a burger!</h1>
 
-<h2>burgers that are not devoured!</h2>
+<h3>Burgers that are not devoured!</h3>
 
 <ul>
   {{#each burgers}}
     {{#unless devoured}}
-      {{> burgers/burger-block sleep=true}}
+      {{> burgers/burger-block devoured=true}}
     {{/unless}}
   {{/each}}
 </ul>
 
-<h2>burgers that are devoured!</h2>
+<h3>Burgers that are devoured!</h3>
 
 <ul>
   {{#each burgers}}
     {{#if devoured}}
-      {{> burgers/burger-block sleep=false}}
+      {{> burgers/burger-block devoured=false}}
     {{/if}}
   {{/each}}
 </ul>
 
-<h2>Add a burger</h2>
+<h4>Add a burger</h4>
 <form class="create-form">
 
   <div class="form-group">
@@ -28,11 +28,11 @@
     <input type="text" id="ca" name="name">
   </div>
 
-  <div class="form-group">
-    <label for="devoured">devoured?</label><br>
+  {{!-- <div class="form-group">
+    <label for="devoured">devoured</label><br>
     <input type="radio" name="devoured" value="1" checked> devoured!<br>
     <input type="radio" name="devoured" value="0"> Not eaten ... yet
-  </div>
+  </div> --}}
 
   <button type="submit" id="submit">Add burger</button>
 </form>

@@ -1,5 +1,15 @@
 const connection = require("./connection");
 
+function printQuestionMarks(num) {
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
+
 function objToSql(ob) {
     var arr = [];
 
@@ -51,26 +61,26 @@ let orm = {
         });
       },
    
-    create: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
+    // create: function(table, cols, vals, cb) {
+    //     var queryString = "INSERT INTO " + table;
     
       
-        queryString += cols.toString();
+    //     queryString += cols.toString();
        
-        queryString += "VALUES (";
+    //     queryString += "VALUES (";
     
    
     
-        console.log(queryString);
+    //     console.log(queryString);
     
-        connection.query(queryString, vals, function(err, result) {
-          if (err) {
-            throw err;
-          }
+    //     connection.query(queryString, vals, function(err, result) {
+    //       if (err) {
+    //         throw err;
+    //       }
     
-          cb(result);
-        });
-      },
+    //       cb(result);
+    //     });
+    //   },
 }
 
 module.exports = orm;

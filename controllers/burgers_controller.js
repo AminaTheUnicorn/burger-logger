@@ -16,15 +16,26 @@ router.get("/", function(req, res) {
   });
 });
 
+router.get("/api", function(req, res) {
+  burger.all(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    console.log(hbsObject);
+   res.json(data)
+  });
+});
+
 router.post("/api/burgers", function(req, res) {
- console.log(req.body);
+ console.log("Req:" + req.body.name);
   burger.create([
     "burger_name", "devoured"
   ], [
-    req.body.burger_name, req.body.devoured
+    req.body.burger_name, false
   ], function(result) {
     // Send back the ID of the new quote
-    res.json({ id: result.insertId });
+    //res.json({ id: result.insertId });
+    console.log(result)
   });
 });
 

@@ -1,15 +1,16 @@
 $(document).ready(function(){
 
         $(".change-devoured").on("click", function(event) {
+          event.preventDefault();
             var id = $(this).data("id");
-            var newdevoured = $(this).data("devoured");
+            var newdevoured = $(this).data("newdevoured");
         
             var newdevouredState = {
               devoured: newdevoured
             };
         
             // Send the PUT request.
-            $.ajax("/api/ca/" + id, {
+            $.ajax("/api/burgers/" + id, {
               type: "PUT",
               data: newdevouredState
             }).then(
@@ -25,9 +26,13 @@ $(document).ready(function(){
 
 $(".create-form").on("submit", function(event){
         event.preventDefault()
-        let addBurger = "swiss tutoring"
-        console.log(addBurger);
+        // let addBurger = "swiss tutorin"
+        // console.log(addBurger);
 
+        var addBurger = {
+          burger_name: $("#ca").val().trim(),
+          devoured: $("[name=devoured]:checked").val().trim()
+        };
         
         $.ajax("/api/burgers", {
             type: "POST",
@@ -47,7 +52,7 @@ $(".create-form").on("submit", function(event){
         var id = $(this).data("id");
         console.log(id);
         // Send the DELETE request.
-        $.ajax("/api/burgers/:id", {
+        $.ajax("/api/burgers/" + id, {
           type: "DELETE"
         }).then(
           function() {

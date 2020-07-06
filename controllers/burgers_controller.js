@@ -2,7 +2,7 @@ var express = require("express");
 
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
+
 var burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
@@ -16,25 +16,25 @@ router.get("/", function(req, res) {
   });
 });
 
-router.get("/api", function(req, res) {
-  burger.all(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-   res.json(data)
-  });
-});
+// router.get("/api", function(req, res) {
+//   burger.all(function(data) {
+//     var hbsObject = {
+//       burgers: data
+//     };
+//     console.log(hbsObject);
+//    res.json(data)
+//   });
+// });
 
 router.post("/api/burgers", function(req, res) {
- console.log("Req:" + req.body.name);
+ console.log("Req:" + req.body.result);
   burger.create([
     "burger_name", "devoured"
   ], [
-    req.body.burger_name, false
+    req.body.burger_name, req.body.devoured
   ], function(result) {
-    // Send back the ID of the new quote
-    //res.json({ id: result.insertId });
+    // Send back the ID of the new burger
+    res.json({ id: result.insertId });
     console.log(result)
   });
 });

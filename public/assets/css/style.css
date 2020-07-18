@@ -1,8 +1,20 @@
-body {
-    font-family: Noto Sans;
-    background-color: orange;
+*{
+    background-color: #EEB42F;  
 }
+
 
 h1, h3, h4 {
     font-family: Noto Sans;
+}
+img.card-img-top {
+    height: 100%;
+    width: 45%;
+}
+.card.col-6 {
+    background-color: #f8f9fa;
+    border: none;
+}
+
+input#ca {
+    width: 50%;
 }

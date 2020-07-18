@@ -22,5 +22,6 @@ Eat-Da-Burger! is a restaurant app that lets users input the names of burgers th
 
 https://eat-burger-web-app.herokuapp.com/
 
-![Burger App demo](./assets/burger-app.gif)
+![Burger App demo](./assets/burger-app.PNG)
+
 ![Burger App demo](./assets/burger-logger.gif)

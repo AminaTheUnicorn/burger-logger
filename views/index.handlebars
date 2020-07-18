@@ -1,53 +1,73 @@
 <div class="container mt-5">
 
   <div class="row">
-     <div class="mx-auto text-center">
-        <img class="card-img-top" src="https://cdn.pixabay.com/photo/2020/04/03/07/10/burger-4997675_960_720.jpg" alt="">
-     </div>
-   <div class="col-md-6">
-      <div class="card text-left">
-        <div class="card-body">
-          <h4 class="card-title">Title</h4>
-          <p class="card-text">Body</p>
+    <h1 class="mb-3 mx-auto text-center">Eat a burger!</h1>
+    <div class="mx-auto text-center">
+      <img class="card-img-top" src="https://cdn.pixabay.com/photo/2020/04/03/07/10/burger-4997675_960_720.jpg" alt="">
+    </div>
+    <div class="col-md-12">
+      <form class="text-center create-form">
+
+        <div class="input-group mb-3">
+          {{!-- <label for="ca">Burger Name:</label> --}}
+          <input type="text" placeholder="Enter burger name" class="mx-auto form-control" id="ca" name="burger_name">
+          <div class="input-group-prepend">
+            <button class="btn btn-danger" type="submit" id="submit">Add burger</button>
+          </div>
         </div>
-      </div>
-   </div>
-   <div class="col-md-6">
-<div class="card text-left">
-  <img class="card-img-top" src="holder.js/100px180/" alt="">
-  <div class="card-body">
-    <h4 class="card-title">Title</h4>
-    <p class="card-text">Body</p>
-  </div>
+
+      </form>
+    </div>
+    <div class="mx-auto">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="devoured" value="1" checked> Devoured!<br>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="devoured" value="0"> Not eaten ... yet
+    </div>
 </div>
-   </div>
-  
+    {{!-- <label for="devoured"></label><br>
+    <input type="radio" name="devoured" value="1" checked> devoured!<br>
+
+    <input type="radio" name="devoured" value="0"> Not eaten ... yet --}}
+
   </div>
+
+
+
+
+
 
   <div class="row">
-    <div class="card col-6">
+    <div class="shadow-sm card col-6">
+      <div class="card-body">
+        <h3 class="mb-3 card-title text-center">Burgers that are not devoured!</h3>
 
-      <h3 class="mb-3 text-center">Burgers that are not devoured!</h3>
-
-      <ul>
-        {{#each burgers}}
-        {{#unless devoured}}
-        {{> burgers/burger-block devoured=true}}
-        {{/unless}}
-        {{/each}}
-      </ul>
+        <ul>
+          {{#each burgers}}
+          {{#unless devoured}}
+          {{> burgers/burger-block devoured=true}}
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
     </div>
-    <div class="card col-6">
-      <h3 class="mb-3 text-center">Burgers that are devoured!</h3>
 
-      <ul>
-        {{#each burgers}}
-        {{#if devoured}}
-        {{> burgers/burger-block devoured=false}}
-        {{/if}}
-        {{/each}}
-      </ul>
+
+    <div class="shadow-sm card col-6">
+      <div class="card-body">
+        <h3 class="mb-3 card-title text-center">Burgers that are devoured!</h3>
+
+        <ul>
+          {{#each burgers}}
+          {{#if devoured}}
+          {{> burgers/burger-block devoured=false}}
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
     </div>
   </div>
+
 
 </div>

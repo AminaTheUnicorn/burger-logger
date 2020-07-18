@@ -1,9 +1,9 @@
 <li>
 	{{burger_name}}
 
-	<button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
+	<button class="btn btn-secondary change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
 		{{#if devoured}}Devour{{else}} Trash{{/if}}
 	</button>
 
-	<button class="delete-burger" data-id="{{this.id}}">Trash</button>
+	<button class="btn btn-secondary delete-burger" data-id="{{this.id}}">Trash</button>
 </li>
